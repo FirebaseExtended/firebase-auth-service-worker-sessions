@@ -1,0 +1,52 @@
+{
+  "name": "firebase-auth-service-worker-sessions",
+  "version": "1.0.0",
+  "description": "Session Management with Service Workers",
+  "main": "app.js",
+  "scripts": {
+    "bundle": "webpack --config webpack.config.js",
+    "prestart": "npm run bundle",
+    "deploy": "gcloud app deploy",
+    "start": "node server/app.js",
+    "lint": "repo-tools lint",
+    "pretest": "npm run lint",
+    "system-test": "repo-tools test app",
+    "test": "npm run system-test",
+    "e2e-test": "repo-tools test deploy"
+  },
+  "author": "bojeil-google",
+  "license": "Apache License Version 2.0",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.16.3",
+    "firebase": "^5.4.1",
+    "firebase-admin": "^5.13.1",
+    "firebaseui": "^3.4.0",
+    "pug": "^2.0.3",
+    "webpack": "^4.17.1"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "^2.3.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "semistandard": "^12.0.1",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.0.8"
+  },
+  "engines": {
+    "node": ">=4.3.2"
+  },
+  "cloud-repo-tools": {
+    "test": {
+      "app": {
+        "msg": "Session management with Firebase Auth Service workers"
+      }
+    },
+    "requiresKeyFile": true,
+    "requiresProjectId": true
+  }
+}
