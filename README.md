@@ -86,6 +86,8 @@ following instructions:
 - Create a GCP project in the [Google Cloud Console](https://console.cloud.google.com/).
 - Run the following command in the root folder to configure your GCP project
   for the sample app. Make sure you select the project you created above.
+  You will need to install [gcloud SDK](https://cloud.google.com/sdk/gcloud/) before you
+  do so.
 
   ```bash
   gcloud init
@@ -109,7 +111,7 @@ The application demonstrates how Firebase Auth can be used to manage user
 sessions using service workers without having to set session cookies.
 
 Firebase Auth is optimized to run on the client side. Tokens are saved in
-web storage. This makes it wasy to also integrate with other Firebase services
+web storage. This makes it easy to also integrate with other Firebase services
 such as Realtime Database, Cloud Firestore, Cloud Storage, etc.
 To manage sessions from a server side perspective, ID tokens have to be
 retrieved and passed to the server.

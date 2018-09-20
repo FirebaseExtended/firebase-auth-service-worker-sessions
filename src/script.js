@@ -78,7 +78,7 @@ const initApp = () => {
 };
 // Initialize Firebase app.
 var app = firebase.initializeApp(config);
-// Set persistence to none.
+// Set persistence to local.
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 // Initialize the FirebaseUI Widget using Firebase.
 const ui = new firebaseui.auth.AuthUI(app.auth());
