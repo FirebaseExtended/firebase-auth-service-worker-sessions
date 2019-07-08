@@ -13,8 +13,6 @@
  */
 
 const express = require('express');
-const http = require('http');
-const https = require('https');
 const app = express();
 const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
