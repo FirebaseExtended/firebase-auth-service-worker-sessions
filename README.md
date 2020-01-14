@@ -40,7 +40,7 @@ Console](https://console.firebase.google.com).
 Enable the **Google** and **Email/Password** sign-in providers in the
 **Authentication > SIGN-IN METHOD** tab.
 
-In the `./auth-serviceworker/src` folder, create a `config.js` file:
+In the `./firebase-auth-service-worker-sessions/src` folder, create a `config.js` file:
 
 ```javascript
 module.exports = {
@@ -64,7 +64,7 @@ credentials will be required. Learn more on how to
 [add the Firebase Admin SDK to your server](https://firebase.google.com/docs/admin/setup).
 
 After you generate a new private key, save it in the root folder
-`./auth-serviceworker/server` as `serviceAccountKeys.json`.
+`./firebase-auth-service-worker-sessions/server` as `serviceAccountKeys.json`.
 Make sure to keep these credentials secret and never expose them in public.
 
 ### Building Sample app
