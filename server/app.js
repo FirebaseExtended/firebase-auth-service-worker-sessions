@@ -113,6 +113,8 @@ admin.initializeApp({
 });
 // Support JSON-encoded bodies.
 app.use(bodyParser.json());
+// Support text bodies.
+app.use(bodyParser.text());
 // Support URL-encoded bodies.
 app.use(bodyParser.urlencoded({
   extended: true

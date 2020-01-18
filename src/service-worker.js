@@ -98,8 +98,26 @@ self.addEventListener('install', (event) => {
 // As this is a test app, let's only return cached data when offline.
 self.addEventListener('fetch', (event) => {
   const fetchEvent = event;
+  // Get underlying body if available. Works for text and json bodies.
+  const getBodyContent = (req) => {
+    return Promise.resolve().then(() => {
+      if (req.method !== 'GET') {
+        if (req.headers.get('Content-Type').indexOf('json') !== -1) {
+          return req.json()
+            .then((json) => {
+              return JSON.stringify(json);
+            });
+        } else {
+          return req.text();
+        }
+      }
+    }).catch((error) => {
+      // Ignore error.
+    });
+  };
   const requestProcessor = (idToken) => {
     let req = event.request;
+    let processRequestPromise = Promise.resolve();
     // For same origin https requests, append idToken to header.
     if (self.location.origin == getOriginFromUrl(event.request.url) &&
         (self.location.protocol == 'https:' ||
@@ -114,24 +132,29 @@ self.addEventListener('fetch', (event) => {
       // will break HTTP basic authentication.
       headers.append('Authorization', 'Bearer ' + idToken);
       try {
-        req = new Request(req.url, {
-          method: req.method,
-          headers: headers,
-          mode: 'same-origin',
-          credentials: req.credentials,
-          cache: req.cache,
-          redirect: req.redirect,
-          referrer: req.referrer,
-          body: req.body,
-          bodyUsed: req.bodyUsed,
-          context: req.context
+        processRequestPromise = getBodyContent(req).then((body) => {
+          req = new Request(req.url, {
+            method: req.method,
+            headers: headers,
+            mode: 'same-origin',
+            credentials: req.credentials,
+            cache: req.cache,
+            redirect: req.redirect,
+            referrer: req.referrer,
+            body,
+            bodyUsed: req.bodyUsed,
+            context: req.context
+          });
         });
       } catch (e) {
         // This will fail for CORS requests. We just continue with the
         // fetch caching logic below and do not pass the ID token.
       }
     }
-    return fetch(req).then((response) => {
+    return processRequestPromise.then(() => {
+      return fetch(req);
+    })
+    .then((response) => {
       // Check if we received a valid response.
       // If not, just funnel the error response.
       if (!response || response.status !== 200 || response.type !== 'basic') {
