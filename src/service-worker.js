@@ -131,8 +131,8 @@ self.addEventListener('fetch', (event) => {
       // Add ID token to header. We can't add to Authentication header as it
       // will break HTTP basic authentication.
       headers.append('Authorization', 'Bearer ' + idToken);
-      try {
-        processRequestPromise = getBodyContent(req).then((body) => {
+      processRequestPromise = getBodyContent(req).then((body) => {
+        try {
           req = new Request(req.url, {
             method: req.method,
             headers: headers,
@@ -145,11 +145,11 @@ self.addEventListener('fetch', (event) => {
             bodyUsed: req.bodyUsed,
             context: req.context
           });
-        });
-      } catch (e) {
-        // This will fail for CORS requests. We just continue with the
-        // fetch caching logic below and do not pass the ID token.
-      }
+        } catch (e) {
+          // This will fail for CORS requests. We just continue with the
+          // fetch caching logic below and do not pass the ID token.
+        }
+      });
     }
     return processRequestPromise.then(() => {
       return fetch(req);
