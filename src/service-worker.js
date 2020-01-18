@@ -139,10 +139,14 @@ self.addEventListener('fetch', (event) => {
       }
       // If response is valid, clone it and save it to the cache.
       const responseToCache = response.clone();
-      // Save response to cache.
-      caches.open(CACHE_NAME).then((cache) => {
-        cache.put(fetchEvent.request, responseToCache);
-      });
+      // Save response to cache only for GET requests.
+      // Cache Storage API does not support using a Request object whose method is
+      // not 'GET'.
+      if (req.method === 'GET') {
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(fetchEvent.request, responseToCache);
+        });
+      }
       // After caching, return response.
       return response;
     })
