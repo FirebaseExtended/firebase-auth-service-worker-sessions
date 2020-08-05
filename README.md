@@ -12,6 +12,12 @@ manage user sessions.
   1. [Deploy to App Engine Flexible Environment](#deploy-to-app-engine-flexible-environment)
 2. [Overview](#overview)
 
+## Status
+
+![Status: Experimental](https://img.shields.io/badge/Status-Experimental-blue)
+
+This repository is maintained by Googlers but is not a supported Firebase product.  Issues here are answered by maintainers and other community members on GitHub on a best-effort basis.
+
 ## Developer Setup
 
 ### Dependencies
