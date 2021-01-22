@@ -62,8 +62,8 @@ Copy and paste the Web snippet code configuration found in the console to the
 You can find the snippet by clicking the "Web setup" button in the Firebase
 Console Authentication page.
 
-Ensure the application authorized domain is also whitelisted. `localhost`
-should already be set as an authorized OAuth domain.
+Ensure the application domain is also added to the list of authorized
+domains. `localhost` should already be set as an authorized OAuth domain.
 
 Since the application is using the Firebase Admin SDK, service account
 credentials will be required. Learn more on how to
@@ -105,7 +105,7 @@ following instructions:
   ```
   This will launch your sample app at `http://[YOUR_PROJECT_ID].appspot.com`.
 
-  Make sure you whitelist the sample app domain as an authorized OAuth domain
+  Make sure you add the sample app domain as an authorized OAuth domain
   in the Firebase Console.
 
 To learn more about Google App Engine Node.js flexible envionment, refer to
