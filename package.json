@@ -28,7 +28,7 @@
     "babel-register": "^6.26.0",
     "semistandard": "^13.0.1",
     "webpack": "^4.35.3",
-    "webpack-cli": "^3.0.8"
+    "webpack-cli": "^3.3.12"
   },
   "engines": {
     "node": ">=8"
